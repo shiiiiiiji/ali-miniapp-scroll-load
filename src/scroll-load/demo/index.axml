@@ -1,0 +1,18 @@
+<view class="test-wrapper">
+  <scroll-load
+    className="test"
+    scrollX="{{false}}"
+    scrollY="{{true}}"
+    onScrollToLower="handleScrollToLower"
+    isErrorRequest="{{isErrorRequest}}"
+    noMoreData="{{noMoreData}}"
+    listData="{{listData}}"
+  >
+    <view slot="scroll-content-list">
+      <block a:for="{{listData}}">
+        <view class="item" item="{{item}}" index="{{index}}" >{{item.title}}</view>
+      </block>
+    </view>
+    
+  </scroll-load>
+</view>
