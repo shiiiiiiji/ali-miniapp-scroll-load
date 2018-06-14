@@ -1,0 +1,51 @@
+<scroll-view
+  class="scroll-view-wrapper scroll-view-{{$id}} {{className}}"
+  style="{{style}}"
+  scroll-x="{{scrollX}}"
+  scroll-y="{{scrollY}}"
+  upper-threshold="{{upperThreshold}}"
+  lower-threshold="{{lowerThreshold}}"
+  scroll-top="{{scrollTop}}"
+  scroll-left="{{scrollLeft}}"
+  scroll-into-view="{{scrollIntoView}}"
+  scroll-with-animation="{{scrollWithAnimation}}"
+  onScrollToUpper="handleScrollToUpper"
+  onScrollToLower="handleScrollToLower"
+  onScroll="handleScroll"
+>
+
+  <!-- <slot name="pull-refresh"><view class="pull-refresh-wrapper">下拉刷新</view></slot> -->
+  <slot name="top-view"></slot>
+  <block a:if="{{listData.length}}">
+    <slot name="scroll-content-list">
+      <block a:for="{{listData}}">
+        <view>{{index}}</view>
+      </block>
+    </slot>
+  </block>
+  <block a:if="{{!noMoreData}}">
+    <slot name="load-more">
+      <view class="load-more-wrapper">正在加载中...</view>
+    </slot>
+  </block>
+  <block a:if="{{isErrorRequest && (listData.length && !noMoreData && isScroll)}}">
+    <slot name="load-error">
+      <view class="load-error-wrapper">点击重新加载</view>
+    </slot>
+  </block>
+  <block a:if="{{listData.length && noMoreData && isScroll}}">
+    <slot name="no-nore-data">
+      <view class="no-more-data-wrapper">亲，就这么多了</view>
+    </slot>
+  </block>
+  <block a:if="{{!listData.length && noMoreData}}">
+    <slot name="empty">
+      <view class="empty-wrapper">这里啥都没有哦~</view>
+    </slot>
+  </block>
+  <block a:if="{{isErrorRequest && !listData.length}}">
+    <slot name="error">
+      <view class="error-wrapper">系统繁忙，稍后再试</view>
+    </slot>
+  </block>
+</scroll-view>
