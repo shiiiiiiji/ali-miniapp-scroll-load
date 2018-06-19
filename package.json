@@ -2,6 +2,7 @@
   "name": "ali-miniapp-scroll-load",
   "version": "0.0.2",
   "description": "支付宝小程序组件ScrollLoad",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:if2er/ali-miniapp-scroll-load.git"
